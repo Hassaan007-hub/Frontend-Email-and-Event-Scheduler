@@ -3,6 +3,7 @@ export interface User {
   name: string;
   picture: string;
   authenticated: boolean;
+  is_owner?: boolean;
 }
 
 export interface Message {

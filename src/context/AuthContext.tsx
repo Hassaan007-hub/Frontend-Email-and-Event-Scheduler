@@ -22,6 +22,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const hash = window.location.hash;
     if (hash.startsWith('#token=')) {
       localStorage.setItem('session_token', hash.slice('#token='.length));
+      sessionStorage.removeItem('demo_notice_seen');
       history.replaceState(null, '', window.location.pathname);
     }
     getMe()

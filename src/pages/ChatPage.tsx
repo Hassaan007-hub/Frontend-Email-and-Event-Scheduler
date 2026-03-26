@@ -20,6 +20,14 @@ export default function ChatPage() {
   const [messages, setMessages] = useState<Message[]>([WELCOME]);
   const [isLoading, setIsLoading] = useState(false);
   const [fillText, setFillText] = useState<string | null>(null);
+  const [showDemoModal, setShowDemoModal] = useState(
+    () => !user?.is_owner && !sessionStorage.getItem('demo_notice_seen'),
+  );
+
+  function dismissDemoModal() {
+    sessionStorage.setItem('demo_notice_seen', '1');
+    setShowDemoModal(false);
+  }
 
   async function handleSend(text: string) {
     const userMsg: Message = {
@@ -68,6 +76,33 @@ export default function ChatPage() {
 
   return (
     <div className="flex h-screen flex-col bg-[#07070f]">
+      {/* Demo limit modal */}
+      {showDemoModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4 backdrop-blur-sm">
+          <div className="glass gradient-border w-full max-w-sm rounded-3xl p-7 shadow-2xl glow-indigo">
+            <div className="mb-4 flex items-center gap-3">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 shadow-md">
+                <svg className="h-5 w-5 text-white" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                </svg>
+              </div>
+              <h2 className="text-lg font-semibold text-white">Demo Account</h2>
+            </div>
+            <p className="mb-2 text-sm text-slate-300">
+              You have <span className="font-semibold text-white">3 demo messages</span> available per day.
+            </p>
+            <p className="mb-6 text-sm text-slate-400">
+              Once used, your quota resets after 24 hours. Make them count!
+            </p>
+            <button
+              onClick={dismissDemoModal}
+              className="w-full rounded-xl bg-gradient-to-r from-indigo-500 to-violet-500 py-2.5 text-sm font-medium text-white shadow transition-opacity hover:opacity-90"
+            >
+              Got it
+            </button>
+          </div>
+        </div>
+      )}
       {/* Header */}
       <header className="glass shrink-0 flex items-center justify-between border-b border-white/[0.06] px-5 py-3.5">
         {/* Logo */}
