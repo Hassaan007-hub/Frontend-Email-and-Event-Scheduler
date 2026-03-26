@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import DeveloperCredit from '../components/DeveloperCredit';
 import SignInButton from '../components/SignInButton';
 
@@ -75,7 +76,8 @@ export default function LandingPage() {
         <SignInButton />
 
         <p className="mt-4 text-center text-xs text-slate-600">
-          Secure · Powered by Google OAuth 2.0
+          Secure · Powered by Google OAuth 2.0 ·{' '}
+          <Link to="/privacy" className="hover:text-slate-400">Privacy Policy</Link>
         </p>
       </div>
 

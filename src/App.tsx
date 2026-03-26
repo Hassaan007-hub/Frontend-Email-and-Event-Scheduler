@@ -3,6 +3,7 @@ import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-d
 import { AuthProvider, useAuth } from './context/AuthContext';
 import ChatPage from './pages/ChatPage';
 import LandingPage from './pages/LandingPage';
+import PrivacyPage from './pages/PrivacyPage';
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth();
@@ -23,6 +24,7 @@ export default function App() {
       <Router>
         <Routes>
           <Route path="/" element={<LandingPage />} />
+          <Route path="/privacy" element={<PrivacyPage />} />
           <Route
             path="/chat"
             element={
