@@ -94,34 +94,34 @@ interface Props {
 
 export default function SuggestionChips({ onFill }: Props) {
   return (
-    <div className="shrink-0 border-b border-white/[0.04] px-5 py-5">
-      <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-600">
+    <div className="shrink-0 border-b border-white/[0.04] px-5 py-3">
+      <p className="mb-2.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-600">
         Quick templates — click to fill &amp; edit
       </p>
-      <div className="grid grid-cols-3 gap-2.5">
+      <div className="grid grid-cols-3 gap-2">
         {TEMPLATES.map(({ icon, title, preview, full, color, glow }) => (
           <button
             key={title}
             onClick={() => onFill(full)}
-            className={`group relative flex flex-col items-start gap-2 overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.03] p-3.5 text-left transition-all duration-300 hover:-translate-y-0.5 hover:border-white/[0.12] hover:bg-white/[0.06] hover:shadow-lg ${glow}`}
+            className={`group relative flex items-center gap-2.5 overflow-hidden rounded-xl border border-white/[0.06] bg-white/[0.03] px-3 py-2 text-left transition-all duration-300 hover:border-white/[0.12] hover:bg-white/[0.06] hover:shadow-lg ${glow}`}
           >
             {/* Subtle gradient background on hover */}
             <div className={`absolute inset-0 bg-gradient-to-br ${color} opacity-0 transition-opacity duration-300 group-hover:opacity-[0.06]`} />
 
             {/* Icon */}
-            <span className={`relative flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${color} text-sm shadow-lg`}>
+            <span className={`relative flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br ${color} text-sm shadow-md`}>
               {icon}
             </span>
 
-            {/* Title */}
-            <span className="relative text-xs font-semibold leading-tight text-slate-300 transition-colors duration-200 group-hover:text-white">
-              {title}
-            </span>
-
-            {/* Preview */}
-            <span className="relative line-clamp-1 text-[10px] leading-snug text-slate-600 transition-colors duration-200 group-hover:text-slate-500">
-              {preview}
-            </span>
+            {/* Text */}
+            <div className="relative min-w-0 flex-1">
+              <p className="truncate text-xs font-semibold leading-tight text-slate-300 transition-colors duration-200 group-hover:text-white">
+                {title}
+              </p>
+              <p className="truncate text-[10px] leading-snug text-slate-600 transition-colors duration-200 group-hover:text-slate-500">
+                {preview}
+              </p>
+            </div>
 
             {/* Bottom accent line */}
             <div className={`absolute bottom-0 left-0 h-[2px] w-0 bg-gradient-to-r ${color} transition-all duration-300 group-hover:w-full`} />
