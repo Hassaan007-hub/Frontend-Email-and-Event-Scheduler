@@ -123,3 +123,4 @@ Set the following environment variables in Vercel project settings:
 | `VITE_Developer_Name` | Your name |
 | `VITE_Developer_Email` | Your email |
 | `VITE_Developer_LinkedIn` | Your LinkedIn URL |
+
